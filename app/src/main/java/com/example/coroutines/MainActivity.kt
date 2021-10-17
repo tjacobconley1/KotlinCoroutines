@@ -14,6 +14,7 @@ import kotlinx.coroutines.withContext
 class MainActivity : AppCompatActivity() {
 
     private val RESULT1 = "Result #1"
+    private val RESULT2 = "Result #2"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -57,6 +58,10 @@ class MainActivity : AppCompatActivity() {
         val result1 = getResult1FromApi()
         println("debus: $result1")
         setTextOnMainThread(result1)
+
+        val result2 = getResult2FromApi()
+        setTextOnMainThread(result2)
+
         // doing
         // text.text = result1
         // will cause app to crash
@@ -71,6 +76,13 @@ class MainActivity : AppCompatActivity() {
         delay(1000)
         return RESULT1
     }
+
+    private suspend fun getResult2FromApi(): String{
+        logThread("getResult2FromApi")
+        delay(1000)
+        return RESULT2
+    }
+
 
     // will print the Thread on which the coroutine
     // is being executed
